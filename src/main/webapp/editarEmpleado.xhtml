@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+<h:head>
+    <title>Administración de Empleados</title>
+</h:head>
+<h:body>
+    <h:form id="employeeForm">
+        <p:messages id="messages" showDetail="true" autoUpdate="true" closable="true" />
+
+        <p:panelGrid columns="2">
+            <h:outputLabel for="documentoTipo" value="Tipo de Documento:" />
+            <p:selectOneMenu id="documentoTipo" value="#{employeeBean.selectedEmployee.documentoTipo}">
+                <f:selectItem itemValue="RC" itemLabel="RC" />
+                <f:selectItem itemValue="TI" itemLabel="TI" />
+                <f:selectItem itemValue="CC" itemLabel="CC" />
+                <f:selectItem itemValue="CE" itemLabel="CE" />
+            </p:selectOneMenu>
+
+            <h:outputLabel for="documentoNumero" value="Número de Documento:" />
+            <p:inputText id="documentoNumero" value="#{employeeBean.selectedEmployee.documentoNumero}" required="true" />
+
+            <h:outputLabel for="nombres" value="Nombres:" />
+            <p:inputText id="nombres" value="#{employeeBean.selectedEmployee.nombres}" required="true" />
+
+            <h:outputLabel for="apellidos" value="Apellidos:" />
+            <p:inputText id="apellidos" value="#{employeeBean.selectedEmployee.apellidos}" required="true" />
+
+            <h:outputLabel for="departamento" value="Departamento:" />
+            <p:selectOneMenu id="departamento" value="#{employeeBean.selectedEmployee.departamento}">
+                <f:selectItems value="#{departmentBean.allDepartments}" var="dept" itemLabel="#{dept.departamentoNombre}" itemValue="#{dept}" />
+            </p:selectOneMenu>
+
+            <h:outputLabel for="ciudad" value="Ciudad:" />
+            <p:inputText id="ciudad" value="#{employeeBean.selectedEmployee.ciudad}" />
+
+            <h:outputLabel for="direccion" value="Dirección:" />
+            <p:inputText id="direccion" value="#{employeeBean.selectedEmployee.direccion}" />
+
+            <h:outputLabel for="correoElectronico" value="Correo Electrónico:" />
+            <p:inputText id="correoElectronico" value="#{employeeBean.selectedEmployee.correoElectronico}" />
+
+            <h:outputLabel for="telefono" value="Teléfono:" />
+            <p:inputText id="telefono" value="#{employeeBean.selectedEmployee.telefono}" />
+        </p:panelGrid>
+
+        <p:commandButton value="Guardar" action="#{employeeBean.saveEmployee}" update="employeeForm, messages" />
+        <p:commandButton value="Cancelar" action="#{employeeBean.cancelEdit}" immediate="true" update="employeeForm" />
+    </h:form>
+</h:body>
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+<h:head>
+    <title>CRUD Departamentos</title>
+</h:head>
+<h:body>
+    <h:form id="departmentForm">
+        <p:growl id="messages" showDetail="true" />
+        
+        <!-- Botón para crear un nuevo departamento -->
+        <p:commandButton value="Crear Departamento" action="#{departamentoBean.redirectToCreateDepartment}" />
+        
+        <!-- Tabla para listar los departamentos -->
+        <p:dataTable id="departmentTable" value="#{departamentoBean.Departamentos}" var="department" paginator="true" rows="10"
+                     emptyMessage="No se encontraron departamentos.">
+            <f:facet name="header">
+                Lista de Departamentos
+            </f:facet>
+            
+            <p:column headerText="ID">
+                <h:outputText value="#{department.id}" />
+            </p:column>
+            
+            <p:column headerText="Código">
+                <h:outputText value="#{department.codigo}" />
+            </p:column>
+            
+            <p:column headerText="Nombre">
+                <h:outputText value="#{department.nombre}" />
+            </p:column>
+            
+            <!-- Botones para editar y eliminar un departamento -->
+            <p:column headerText="Acciones">
+                <p:commandButton value="Editar" icon="pi pi-pencil" action="#{departamentoBean.redirectToEditDepartment(department.id)}" />
+                <p:commandButton value="Eliminar" icon="pi pi-trash" action="#{departamentoBean.deleteDepartment(department.id)}" 
+                                 update=":departmentForm:departmentTable :departmentForm:messages" />
+            </p:column>
+        </p:dataTable>
+    </h:form>
+</h:body>
+</html>

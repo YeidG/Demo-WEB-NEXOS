@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+<h:head>
+    <title>CRUD de Empleados</title>
+</h:head>
+<h:body>
+    <h:form id="employeeForm">
+        <p:panel header="Empleados">
+         <p:button value="Crear Empleado" icon="pi pi-plus" outcome="createEmployee" />
+            <p:dataTable id="employeeTable" value="#{EmpleadoBean.Empleados}" var="Empleado">
+                <p:column headerText="ID">
+                    <h:outputText value="#{Empleado.id}" />
+                </p:column>
+                <p:column headerText="Tipo de Documento">
+                    <h:outputText value="#{Empleado.documentoTipo}" />
+                </p:column>
+                <p:column headerText="Número de Documento">
+                    <h:outputText value="#{Empleado.documentoNumero}" />
+                </p:column>
+                <p:column headerText="Nombres">
+                    <h:outputText value="#{Empleado.nombres}" />
+                </p:column>
+                <p:column headerText="Apellidos">
+                    <h:outputText value="#{Empleado.apellidos}" />
+                </p:column>
+                <p:column headerText="Ciudad">
+                    <h:outputText value="#{Empleado.ciudad}" />
+                </p:column>
+                <p:column headerText="Dirección">
+                    <h:outputText value="#{Empleado.direccion}" />
+                </p:column>
+                <p:column headerText="Correo Electrónico">
+                    <h:outputText value="#{Empleado.correoElectronico}" />
+                </p:column>
+                <p:column headerText="Teléfono">
+                    <h:outputText value="#{Empleado.telefono}" />
+                </p:column>
+                <p:column headerText="Fecha de Creación">
+                    <h:outputText value="#{Empleado.fechaHoraCrea}" />
+                </p:column>
+                <p:column headerText="Fecha de Modificación">
+                    <h:outputText value="#{Empleado.fechaHoraModifica}" />
+                </p:column>
+                <p:column headerText="Acciones">
+                    <p:commandButton icon="pi pi-pencil" action="#{EmpleadoBean.editEmployee(Empleado)}" />
+                    <p:commandButton icon="pi pi-trash" action="#{EmpleadoBean.deleteEmployee(Empleado)}" />
+                </p:column>
+            </p:dataTable>
+        </p:panel>
+    </h:form>
+</h:body>
+</html>
+

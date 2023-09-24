@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+<h:head>
+    <title>Administración de Departamentos</title>
+</h:head>
+<h:body>
+    <h:form id="departmentForm">
+        <p:messages id="messages" showDetail="true" autoUpdate="true" closable="true" />
+
+        <p:panelGrid columns="2">
+            <h:outputLabel for="id" value="ID:" />
+            <p:outputLabel id="id" value="#{departamentoBean.selectedDepartment.id}" />
+
+            <h:outputLabel for="codigo" value="Código de Departamento:" />
+            <p:inputText id="codigo" value="#{departamentoBean.selectedDepartment.codigo}" required="true" />
+
+            <h:outputLabel for="nombre" value="Nombre de Departamento:" />
+            <p:inputText id="nombre" value="#{departamentoBean.selectedDepartment.nombre}" required="true" />
+
+            <h:outputLabel for="fechaHoraCrea" value="Fecha de Creación:" />
+            <p:outputLabel id="fechaHoraCrea" value="#{departamentoBean.selectedDepartment.fechaHoraCrea}">
+                <f:convertDateTime pattern="dd/MM/yyyy HH:mm:ss" />
+            </p:outputLabel>
+
+            <h:outputLabel for="fechaHoraModifica" value="Fecha de Modificación:" />
+            <p:outputLabel id="fechaHoraModifica" value="#{departamentoBean.selectedDepartment.fechaHoraModifica}">
+                <f:convertDateTime pattern="dd/MM/yyyy HH:mm:ss" />
+            </p:outputLabel>
+        </p:panelGrid>
+
+        <p:commandButton value="Guardar" action="#{departamentoBean.saveDepartment}" update="departmentForm, messages" />
+        <p:commandButton value="Cancelar" action="#{departamentoBean.cancelEdit}" immediate="true" update="departmentForm" />
+    </h:form>
+</h:body>
+</html>
